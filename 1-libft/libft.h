@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0021/07/29 22:48:50 by da-silv           #+#    #+#             */
-/*   Updated: 2022/08/10 21:15:43 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:22:54 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -352,7 +352,6 @@ void		ft_putendl_fd(char *s, int fd);
  */
 void		ft_putnbr_fd(int n, int fd);
 
-
 /**
  * @brief GNL Functions
  * 
@@ -362,7 +361,6 @@ void		ft_putnbr_fd(int n, int fd);
 char		*ft_save_rest(char *src);
 char		*ft_read_line(char *src);
 char		*get_next_line(int fd);
-
 
 /**
  * @brief PRINTF functions
@@ -381,6 +379,4 @@ int			ft_print_decimal(int number);
 int			ft_print_positive_int(int number);
 char		*ft_uitoa(unsigned int n);
 int			ft_print_hex(unsigned int nbr, int xorX);
-
-
 #endif

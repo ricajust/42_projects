@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:02:38 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/10 21:11:30 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:23:11 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_print_string(char *str)
 	int	i;
 
 	i = 0;
-	if(str)
+	if (str)
 	{
 		while (str[i])
 		{
