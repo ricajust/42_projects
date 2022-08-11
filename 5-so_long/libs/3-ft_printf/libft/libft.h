@@ -6,18 +6,14 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0021/07/29 22:48:50 by da-silv           #+#    #+#             */
-/*   Updated: 2022/08/10 21:15:43 by rda-silv         ###   ########.fr       */
+/*   Updated: 2021/09/01 19:14:09 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# define BUFFER_SIZE 42
-
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
 
 /* PART 1 */
 //STRING OPERATIONS: STRING.H
@@ -351,36 +347,4 @@ void		ft_putendl_fd(char *s, int fd);
  * 
  */
 void		ft_putnbr_fd(int n, int fd);
-
-
-/**
- * @brief GNL Functions
- * 
- * @param src 
- * @return char* 
- */
-char		*ft_save_rest(char *src);
-char		*ft_read_line(char *src);
-char		*get_next_line(int fd);
-
-
-/**
- * @brief PRINTF functions
- * 
- * @param format 
- * @param ... 
- * @return int 
- */
-int			ft_printf(const char *format, ...);
-int			ft_filter_flags(va_list ap, int flag);
-int			ft_putchar_plus(int character);
-int			ft_print_character(char c);
-int			ft_print_string(char *str);
-int			ft_print_pointer(unsigned long address);
-int			ft_print_decimal(int number);
-int			ft_print_positive_int(int number);
-char		*ft_uitoa(unsigned int n);
-int			ft_print_hex(unsigned int nbr, int xorX);
-
-
 #endif

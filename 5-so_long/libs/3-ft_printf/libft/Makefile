@@ -6,7 +6,7 @@
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 0021/07/29 22:47:16 by da-silv           #+#    #+#              #
-#    Updated: 2022/08/10 21:12:09 by rda-silv         ###   ########.fr        #
+#    Updated: 2021/09/02 18:33:04 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,7 @@ SRCS		=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c\
 				ft_strdup.c ft_putchar_fd.c ft_putstr_fd.c ft_substr.c\
 				ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c\
 				ft_striteri.c ft_putendl_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
-				ft_memccpy.c ft_get_next_line.c ft_get_next_line_utils.c \
-				ft_filter_flags.c ft_print_character.c ft_print_decimal.c \
-				ft_print_hex.c ft_print_pointer.c ft_print_positive_int.c \
-				ft_print_string.c ft_printf.c ft_putchar_plus.c \
+				ft_memccpy.c\
 
 OBJ	=	$(SRCS:.c=.o)
 
