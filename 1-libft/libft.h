@@ -5,19 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 0021/07/29 22:48:50 by da-silv           #+#    #+#             */
-/*   Updated: 2022/08/10 21:22:54 by rda-silv         ###   ########.fr       */
+/*   Created: 2022/08/14 14:43:37 by rda-silv          #+#    #+#             */
+/*   Updated: 2022/08/14 17:12:12 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# define BUFFER_SIZE 42
-
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
+# include <fcntl.h>
+
+# define BUFFER_SIZE 1
 
 /* PART 1 */
 //STRING OPERATIONS: STRING.H
@@ -291,12 +290,12 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 /**
  * @brief ft_strjoin() concatenates two strings 's1' and 's2' with memory 
  * allocation resulting from the sum of the length of the two strings 
- * @param s1 const char - The prefix string.
- * @param s2 const char - The suffix string.
+ * @param s1 char - The prefix string.
+ * @param s2 char - The suffix string.
  * @return The function returns a new string result of str1 with str2 plus 1 
  * for the null character. 
  */
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(char *s1, char *s2);
 /**
  * @brief The ft_strtrim() make a copy of 's1' with the characters specified in
  *  'set' removed from the beginning and the end of the string.
@@ -351,32 +350,10 @@ void		ft_putendl_fd(char *s, int fd);
  * 
  */
 void		ft_putnbr_fd(int n, int fd);
-
 /**
- * @brief GNL Functions
- * 
- * @param src 
- * @return char* 
+ * @brief GNL FUNCTIONS
  */
 char		*ft_save_rest(char *src);
 char		*ft_read_line(char *src);
-char		*get_next_line(int fd);
-
-/**
- * @brief PRINTF functions
- * 
- * @param format 
- * @param ... 
- * @return int 
- */
-int			ft_printf(const char *format, ...);
-int			ft_filter_flags(va_list ap, int flag);
-int			ft_putchar_plus(int character);
-int			ft_print_character(char c);
-int			ft_print_string(char *str);
-int			ft_print_pointer(unsigned long address);
-int			ft_print_decimal(int number);
-int			ft_print_positive_int(int number);
-char		*ft_uitoa(unsigned int n);
-int			ft_print_hex(unsigned int nbr, int xorX);
+char		*ft_get_next_line(int fd);
 #endif

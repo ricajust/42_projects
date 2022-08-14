@@ -5,58 +5,114 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 20:52:16 by rda_silva         #+#    #+#             */
-/*   Updated: 2022/08/10 21:10:22 by rda-silv         ###   ########.fr       */
+/*   Created: 2022/08/14 14:36:32 by rda-silv          #+#    #+#             */
+/*   Updated: 2022/08/14 16:48:13 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_mount_line(char *src, int fd)
+static char	*memory_alloction(const char *s1)
 {
-	char	*buffer;
-	int		str_len;
+	char	*cpy;
+	int		size;
+	int		i;
 
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
+	i = 0;
+	size = ft_strlen(s1);
+	cpy = (char *)malloc(sizeof(char) * (size + 1));
+	while (s1[i])
 	{
-		free (buffer);
-		return (NULL);
+		cpy[i] = s1[i];
+		i++;
 	}
-	str_len = 1;
-	while (!ft_strchr(src, '\n') && str_len != 0)
-	{
-		str_len = read(fd, buffer, BUFFER_SIZE);
-		if (str_len == -1)
-		{
-			free (buffer);
-			return (NULL);
-		}
-		buffer[str_len] = '\0';
-		src = ft_strjoin(src, buffer);
-	}
-	free (buffer);
-	return (src);
+	cpy[i] = '\0';
+	return (cpy);
 }
 
-char	*get_next_line(int fd)
+static void	cpy_n_return(char *dest, const char *src, size_t size_src)
 {
-	char		*line;
-	static char	*saved_content;
+	size_t	i;
+	size_t	size_dest;
 
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	saved_content = ft_mount_line(saved_content, fd);
-	if (saved_content == NULL)
-		return (NULL);
-	line = ft_read_line(saved_content);
-	saved_content = ft_save_rest(saved_content);
-	if (line[0] == '\0')
+	if (!dest && !src)
+		return ;
+	i = 0;
+	size_dest = 0;
+	size_dest = ft_strlen(dest);
+	ft_bzero(dest, size_dest);
+	while (i < size_src)
 	{
-		free(saved_content);
-		free(line);
-		return (NULL);
+		dest[i] = src[i];
+		i++;
 	}
+	dest[i] = '\0';
+}
+
+static void	get_lines(char **buf, char **line, char *data_main)
+{
+	int		i;
+	int		strlen_data;
+	char	*tmp_data;
+
+	i = 0;
+	strlen_data = 0;
+	tmp_data = memory_alloction("");
+	while (buf[0][i] != '\n' && buf[0][i] != '\0')
+		i++;
+	if (buf[0][i] == '\n')
+	{
+		line[0] = ft_substr(buf[0], 0, i + 1);
+		free(tmp_data);
+		tmp_data = memory_alloction(&buf[0][i + 1]);
+	}
+	else
+		line[0] = memory_alloction(buf[0]);
+	strlen_data = ft_strlen(tmp_data);
+	cpy_n_return(data_main, tmp_data, strlen_data);
+	free(tmp_data);
+}
+
+static char	*ft_reader(char *data_main, char **buf, int fd)
+{
+	char	*line;
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	while (buf[0][j])
+		j++;
+	while (!ft_strchr(buf[0], '\n') && i)
+	{
+		i = read(fd, data_main, BUFFER_SIZE);
+		j += i;
+		if (i <= 0)
+			break ;
+		buf[0] = ft_strjoin(buf[0], data_main);
+		buf[0][j] = '\0';
+	}
+	if (i < 0)
+		return (NULL);
+	else if (i == 0 && j == 0)
+		return (NULL);
+	get_lines(buf, &line, data_main);
 	return (line);
+}
+
+char	*ft_get_next_line(int fd)
+{
+	static char	data_main[BUFFER_SIZE + 1];
+	char		*reader;
+	char		*buf;
+
+	if (fd < 0 || BUFFER_SIZE < 0)
+		return (0);
+	if (!data_main[0])
+		buf = memory_alloction("");
+	else
+		buf = memory_alloction(data_main);
+	reader = ft_reader(data_main, &buf, fd);
+	free(buf);
+	return (reader);
 }
