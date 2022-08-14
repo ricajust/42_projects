@@ -6,7 +6,7 @@
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 0021/07/29 22:47:16 by da-silv           #+#    #+#              #
-#    Updated: 2022/08/10 21:12:09 by rda-silv         ###   ########.fr        #
+#    Updated: 2022/08/10 21:31:14 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean	all
-
-runw:
-	bash ./libft-war-machine/grademe.sh
 	
 .PHONY: all clear re fclean
