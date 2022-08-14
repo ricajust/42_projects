@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:43:37 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/14 17:12:12 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/14 17:31:58 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
+# include <stdarg.h>
 # define BUFFER_SIZE 1
 
 /* PART 1 */
@@ -356,4 +356,18 @@ void		ft_putnbr_fd(int n, int fd);
 char		*ft_save_rest(char *src);
 char		*ft_read_line(char *src);
 char		*ft_get_next_line(int fd);
+/**
+ * @brief FT_PRINTF FUNCTIONS
+ * 
+ */
+int			ft_printf(const char *format, ...);
+int			ft_filter_flags(va_list ap, int flag);
+int			ft_putchar_plus(int character);
+int			ft_print_character(char c);
+int			ft_print_string(char *str);
+int			ft_print_pointer(unsigned long address);
+int			ft_print_decimal(int number);
+int			ft_print_positive_int(int number);
+char		*ft_uitoa(unsigned int n);
+int			ft_print_hex(unsigned int nbr, int xorX);
 #endif
