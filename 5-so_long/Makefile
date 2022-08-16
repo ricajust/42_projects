@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 15:08:37 by rda-silv          #+#    #+#              #
-#    Updated: 2022/08/14 16:44:34 by rda-silv         ###   ########.fr        #
+#    Updated: 2022/08/16 00:28:08 by coder            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT = ./library/libft/libft.a
 SRCDIR = source
 OBJDIR = object
 
-COMPILE = so_long.c so_long.h hooks.c walk.c collectible.c check_map.c \
+COMPILE = so_long.c hooks.c walk.c collectible.c check_map.c \
 getting_map.c getting_position.c validate.c walk_aux.c check_error.c
 
 SRC = $(addprefix $(SRCDIR)/, $(COMPILE))
