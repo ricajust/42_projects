@@ -6,7 +6,7 @@
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/16 07:52:44 by rda-silv          #+#    #+#              #
-#    Updated: 2022/08/17 20:49:15 by rda-silv         ###   ########.fr        #
+#    Updated: 2022/08/19 20:24:19 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,11 @@ LIB_DIR=library
 LIBFT=./$(LIB_DIR)/libft/libft.a
 
 #SOURCE CODES
-SRCS=so_long.c input_validator.c get_map.c
+# SRCS=so_long.c input_validator.c open_map_file.c tracker.c
+SRCS=so_long.c input_validator.c open_map_file.c tracker.c reset_variables.c \
+     free_all.c handle_checks.c exception_manager.c handle_window.c \
+	 handle_game.c handle_gameplay.c handle_walk.c walk_aux.c \
+	 handle_collect.c
 
 #GET ALL SOURCES FILES
 SRC=$(addprefix $(SRC_DIR)/,$(SRCS))
@@ -54,7 +58,7 @@ $(PROG_NAME): $(OBJ_DIR) $(OBJ)
 #CREATE .O FILES BY .C FILES (ONE BY ONE) - %:TAKES CORE NAME
 #$@ TARGET NAME AND $< FIRST PRE_REQUISIT
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CC_FLAGS) -c $< -o $@
 
 #CREATE OBJ_DIR (IF EXISTS, DO NOTHING)
 $(OBJ_DIR):

@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 07:41:50 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/17 20:52:31 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/19 21:11:28 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@ int	main(int argc, char **argv)
 	t_data	game;
 
 	input_validator(argc, argv[1], &game);
-	get_map(&game);
+	reset_variables(&game);
+	open_map_file(&game);
+	tracker(&game);
+	game.mlx_ptr = mlx_init();
+	if (game.mlx_ptr == NULL)
+		return (1);
+	create_window(&game);
+	put_sprites(&game);
+	render(&game);
+	mlx_key_hook(game.win_ptr, key_release, &game);
+	mlx_hook(game.win_ptr, 33, 1L << 5, close_game, &game);
+	mlx_expose_hook(game.win_ptr, ft_expose, &game);
+	mlx_loop(game.mlx_ptr);
+	free(game.mlx_ptr);
 	return (0);
 }
