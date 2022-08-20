@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 07:41:50 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/19 21:11:28 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:24:08 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	main(int argc, char **argv)
 	tracker(&game);
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
-		return (1);
+	{
+		free_matrix (&game);
+		exit (1);
+	}
 	create_window(&game);
 	put_sprites(&game);
 	render(&game);
