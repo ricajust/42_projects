@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 08:08:08 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/19 21:27:54 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/20 22:26:26 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	check_map_pointer(t_data *game)
 void	check_items(t_data *game, int i)
 {
 	int	j;
-	int	others;
 
 	j = 0;
 	while (game->map[i][j])
@@ -39,7 +38,7 @@ void	check_items(t_data *game, int i)
 		else if (game->map[i][j] == 'E')
 			game->total_exit++;
 		else if (game->map[i][j] == '0' || game->map[i][j] == '1')
-			others++;
+			game->total_wall_or_ground++;
 		else
 			error_items(game, game->map[i][j]);
 		j++;

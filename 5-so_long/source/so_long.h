@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 07:42:22 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/20 12:54:04 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/20 21:21:50 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 	int		total_collectible;
 	int		total_player;
 	int		total_exit;
+	int		total_wall_or_ground;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*floor;
