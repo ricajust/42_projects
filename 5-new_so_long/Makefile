@@ -6,7 +6,7 @@
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/16 07:52:44 by rda-silv          #+#    #+#              #
-#    Updated: 2022/08/19 20:24:19 by rda-silv         ###   ########.fr        #
+#    Updated: 2022/08/19 21:44:38 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ clean:
 #MAKE CLEANING AND DELETE BINARY FILE
 fclean: clean
 	make fclean -C $(LIB_DIR)/libft
-	rm -r $(PROG_NAME)
+	rm -f $(PROG_NAME)
 
 #SHORTCUT TO CLEAN ALL
 re: fclean all

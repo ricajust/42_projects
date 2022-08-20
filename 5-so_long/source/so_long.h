@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:51:00 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/16 00:26:27 by coder            ###   ########.fr       */
+/*   Updated: 2022/08/17 21:59:35 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
-# include "mlx.h"
+# include "./../library/minilibx/mlx.h"
 # include "./../library/libft/libft.h"
 
 typedef struct s_data

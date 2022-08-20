@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
+#    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 15:08:37 by rda-silv          #+#    #+#              #
-#    Updated: 2022/08/16 00:28:08 by coder            ###   ########.fr        #
+#    Updated: 2022/08/17 21:59:37 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME):	$(OBJDIR) $(OBJ)
 		$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MINILIBX) $(LIBFT)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
-				$(CC) $(CFLAGS) -c $< -o $@	-I./source -I./library/libft
+				$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
 		mkdir -p $(OBJDIR)
