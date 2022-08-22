@@ -17,7 +17,7 @@ For that you must move your samurai with the following keys:
 - (D) to the right
 
 ## Diagram
-![Structure diagram](/assets/so_long.jpg)
+![Structure diagram](https://github.com/ricajust/42_projects/blob/master/5-so_long/assets/so_long.jpg)
 
 ## Directory Hierarchy
 ```
