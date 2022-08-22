@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 07:42:22 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/20 21:21:50 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/08/20 20:53:44 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "./../library/libft/libft.h"
-# include "mlx.h"
+# include "./../library/minilibx/mlx.h"
 
 typedef struct s_data
 {
