@@ -1,0 +1,4 @@
+.vscode
+*.o
+object
+README.md
