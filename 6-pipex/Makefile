@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/16 07:52:44 by rda-silv          #+#    #+#              #
-#    Updated: 2022/09/04 21:37:11 by rda-silv         ###   ########.fr        #
+#    Created: 2022/09/06 07:57:57 by rda-silv          #+#    #+#              #
+#    Updated: 2022/09/08 08:09:40 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,7 @@ LIB_DIR=library
 LIBFT=./$(LIB_DIR)/libft/libft.a
 
 #SOURCE CODES
-# SRCS=so_long.c input_validator.c open_map_file.c tracker.c
-SRCS=pipex_poc.c get_command.path.c validators.c
+SRCS=pipex.c validators.c pipering.c
 
 #GET ALL SOURCES FILES
 SRC=$(addprefix $(SRC_DIR)/,$(SRCS))

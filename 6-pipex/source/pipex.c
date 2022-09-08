@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_poc.c                                        :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 07:41:50 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/05 21:28:19 by rda-silv         ###   ########.fr       */
+/*   Created: 2022/09/07 08:33:52 by rda-silv          #+#    #+#             */
+/*   Updated: 2022/09/08 08:53:37 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_poc.h"
+#include "pipex.h"
 
 int	main(int argc, char **argv, char **envp)
 {
-	char *commands_and_arguments[3] = {argv[1], argv[2], NULL};
-	char *command_path;
+	int	file_1;
+	int	file_2;
 
 	argc_validator(argc);
-	command_path = get_command_path(argv[1], envp);
-	if (!command_path)
-	{
-		perror(command_path);
-		return (-1);
-	}
-	execve(command_path, commands_and_arguments, envp);
-	ft_printf("Vitory!!!");
+	file_1 = open(argv[1], O_RDONLY);
+	file_2 = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	open_file_validator(file_1, file_2, argv[1]);
+	pipering(file_1, file_2, argv, envp);
 	return (0);
 }

@@ -5,23 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 21:31:53 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/04 21:43:10 by rda-silv         ###   ########.fr       */
+/*   Created: 2022/09/06 07:57:40 by rda-silv          #+#    #+#             */
+/*   Updated: 2022/09/07 09:57:32 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_poc.h"
+#include "pipex.h"
 
 void	argc_validator(int argc)
 {
-	if (argc < 3)
+	if (argc < 5)
 	{
-		printf("Error\n%d is insuficient argments, please try again\n!", argc);
+		ft_printf("Error\n%d - is insufficient arguments, try again\n", argc);
 		exit(-1);
 	}
-	else if (argc > 3)
+	else if (argc > 5)
 	{
-		printf("Error\n%d is too much argments, please try again\n!", argc);
+		ft_printf("Error\n%d - is too much arguments, try again\n!", argc);
+		exit(-1);
+	}
+}
+
+void	open_file_validator(int fd_1, int fd_2, char *name_file)
+{
+	if (fd_1 < 0)
+	{
+		close(fd_1);
+		close(fd_2);
+		ft_printf("Error\nFail to open file %s", name_file);
+	}
+	
+}
+
+void	pipe_validator(int pipe_return)
+{
+	if (pipe_return == -1)
+	{
+		ft_printf("Error\nPipe creation error, please try again...\n"); // change to errno
+		exit(-1);
+	}
+}
+
+void	fork_validator(pid_t process_id)
+{
+	if (process_id < 0)
+	{
+		ft_printf("Error\nFail to create fork process, please try again!\n");
 		exit(-1);
 	}
 }
