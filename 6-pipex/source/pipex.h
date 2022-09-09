@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/08 08:08:31 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:34:12 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <sys/errno.h>
 # include <sys/wait.h>
 # include "./../library/libft/libft.h"
+
+typedef struct s_data
+{
+	char	**command_and_flags;
+}	t_data;
+
 
 /**
  * @brief arguments validator
@@ -61,7 +67,7 @@ void	fork_validator(pid_t process_id);
  * @param argv 
  * @param envp 
  */
-void	pipering(int file_1, int file_2, char **argv, char **envp);
+void	pipering(t_data data, int file_1, int file_2, char **argv, char **envp);
 
 /**
  * @brief 
