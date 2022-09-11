@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:58:19 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/09 08:35:31 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/11 08:30:47 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ char	*find_command(char *argument_v, char **envp, t_data *data)
 	i = 0;
 	while (paths[i])
 	{
-		printf("Paths: %s\n", paths[i]);
+		// printf("Paths: %s\n", paths[i]);
 		paths[i] = ft_strjoin(paths[i], "/");
-		printf("Paths: %s\n", paths[i]);
+		// printf("Paths: %s\n", paths[i]);
 		path_and_command = ft_strjoin(paths[i], data->command_and_flags[0]);
-		printf("Path and command: %s\n", path_and_command);
+		// printf("Path and command: %s\n", path_and_command);
 		if (access(path_and_command, F_OK | X_OK) == 0)
 		{
 			return (path_and_command);
@@ -68,31 +68,28 @@ char	*find_command(char *argument_v, char **envp, t_data *data)
 void	pipering(t_data data, int file_1, int file_2, char **argv, char **envp)
 {
 	int		file_descriptor[2];
-	int		pipe_return;
 	pid_t	process_id;
 	char	*command;
 
-	pipe_return = pipe(file_descriptor);
-	pipe_validator(pipe_return);
+	pipe_validator(pipe(file_descriptor));
 	process_id = fork();
+	fork_validator(process_id);
 	if (process_id == 0)
 	{
 		dup2(file_1, STDIN_FILENO);
-		// dup2(file_descriptor[1], STDOUT_FILENO);
+		dup2(file_descriptor[1], STDOUT_FILENO);
 		close(file_descriptor[0]);
 		command = find_command(argv[2], envp, &data);
-		printf("COMMANDO!!! %s\n", command);
-		execlp("ls", "ls", NULL);
+		execve(command, data.command_and_flags, envp);
 	}
 	else
 	{
 		dup2(file_2, STDOUT_FILENO);
-		// waitpid(NULL);
 		waitpid(-1, NULL, WNOHANG);
 		dup2(file_descriptor[0], STDIN_FILENO);
 		close(file_descriptor[1]);
-		execlp("cat", "cat", NULL);
-		// execute_command(argv[3], envp);
+		command = find_command(argv[3], envp, &data);
+		execve(command, data.command_and_flags, envp);
 	}
 	close(file_1);
 	close(file_2);

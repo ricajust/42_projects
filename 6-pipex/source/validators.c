@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:40 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/07 09:57:32 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/11 08:17:13 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ void	open_file_validator(int fd_1, int fd_2, char *name_file)
 	{
 		close(fd_1);
 		close(fd_2);
-		ft_printf("Error\nFail to open file %s", name_file);
+		ft_printf("pipex: %s: No such file or directory\n", name_file);
 	}
-	
 }
 
 void	pipe_validator(int pipe_return)
 {
 	if (pipe_return == -1)
 	{
-		ft_printf("Error\nPipe creation error, please try again...\n"); // change to errno
+		perror("pipe error...");
 		exit(-1);
 	}
 }

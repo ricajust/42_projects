@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/09 08:34:12 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/11 08:18:48 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <errno.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <sys/types.h>
-# include <sys/errno.h>
 # include <sys/wait.h>
 # include "./../library/libft/libft.h"
 
