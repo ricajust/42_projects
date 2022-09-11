@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/home/rda-silv/projects/poc/unix_process/pipex/pipex",
+			"program": "/home/rda-silv/projects/42_projects/6-pipex/pipex",
 			"args": ["infile", "ls -la", "wc -l", "outfile"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
