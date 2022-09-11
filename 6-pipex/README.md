@@ -1,37 +1,46 @@
-SO LONG
+PIPEX
 ===
 
 ## Information
-- Title:  `So Long`
+- Title:  `pipex`
 - Authors:  `Ricardo Justino | rda-silv`
 
-## The Game
-Game built in C using the [MiniLibX](https://github.com/42Paris/minilibx-linux) library.
-The objective of the game is to collect all the keys and only then go to the chest to get the treasure. 
+## The Project
+Develop a Unix pipe simulate with C language.
 
 ## Use
-For that you must move your samurai with the following keys:
-- (W) up
-- (A) to the left
-- (S) down
-- (D) to the right
+Your program will be executed as follows:
+>./pipex file1 cmd1 cmd2 file2
 
+It must take 4 arguments:
+- file1 and file2 are file names.
+- cmd1 and cmd2 are shell commands with their parameters.
+
+It must behave exactly the same as the shell command below:
+>$> < file1 cmd1 | cmd2 > file2
+
+## Examples
+>./pipex infile "ls -l" "wc -l" outfile
+
+Should behave like: < infile ls -l | wc -l > outfile
+
+>./pipex infile "grep a1" "wc -w" outfile
+
+Should behave like: < infile grep a1 | wc -w > outfile
+### Some commands with Valgrind
+>valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck ./pipex infile "ls -la" "wc -l" outfile
+
+>valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck ./pipex infile "grep a1" "wc -w" outfile
+
+>valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck ./pipex infile "cat kafka" "grep biblioteca" outfile
+
+>valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck ./pipex infile "free -m" "grep Mem" outfile
 ## Diagram
 ![Structure diagram](https://github.com/ricajust/42_projects/blob/master/5-so_long/assets/so_long.jpg)
 
 ## Directory Hierarchy
 ```
 |—— Makefile
-|—— image
-|    |—— collectible.xpm
-|    |—— down.xpm
-|    |—— ground.xpm
-|    |—— heart_empty.xpm
-|    |—— heart_full.xpm
-|    |—— left.xpm
-|    |—— right.xpm
-|    |—— tree.xpm
-|    |—— up.xpm
 |—— library
 |    |—— libft
 |        |—— Makefile
@@ -84,30 +93,14 @@ For that you must move your samurai with the following keys:
 |        |—— ft_uitoa.c
 |        |—— libft.a
 |        |—— libft.h
-|—— map.ber
-|—— map2.ber
-|—— map_2E.ber
-|—— map_2P.ber
-|—— map_R.ber
-|—— map_T.ber
-|—— map_W.ber
-|—— map_noC.ber
-|—— map_noE.ber
-|—— map_noP.ber
-|—— readme.md
-|—— so_long
+|—— infile
+|—— outfile *(dymanically generated)
+|—— pipex (binary)
 |—— source
-|    |—— check_error.c
-|    |—— check_map.c
-|    |—— collectible.c
-|    |—— getting_map.c
-|    |—— getting_position.c
-|    |—— hooks.c
-|    |—— so_long.c
-|    |—— so_long.h
-|    |—— validate.c
-|    |—— walk.c
-|    |—— walk_aux.c
+|    |—— pipering.c
+|    |—— pipex.c
+|    |—— pipex.h
+|    |—— validators.c
 ```
 ## Code Details
 ### Tested Platform
@@ -121,91 +114,35 @@ For that you must move your samurai with the following keys:
   Local computer:
   CPU: Intel i7-10750H
   GPU: Nvidia RTX2060 (6GB)
-
-  TightVNC:
-  CPU: Intel(R) Xeon(R) Gold 6132 CPU @ 2.60GHz
-  RAM: 16 GB
   ```
 ## Simplification
-- Created an GNL to bring the map in txt to the 'map' variable
-- Created a tracker, an algorithm that scans and counts the size of a two-dimensional matrix
-- Created a handle_check that will have the following functions:
-
-  + (a) check that all lines are the same length (has a rectangular shape - check_shape)
-
-  + (b) check if it is a rectangle, horizontally or vertically (check_rectangle)
-
-  + (c) check that all lines are starting and ending with '1', both vertically and horizontally (it is surrounded by walls - check_walls). Ex:
-
-    ### Horizontal check
-
-    1--------1
-
-    1--------1
-
-    1--------1
-
-    ### Vertical check
-
-    1111111111
-
-    | | | | | | | | | | |
-
-    1111111111
-
-  + (d) check in the map items if we have (check_items):
-
-    + (d.1) at least one 'C'
-
-    + (d.2) only one 'P'
-
-    + (d.3) only one 'E'
-
-    + (d.4) check if it has '0', it may not have any '0'
+- If we use the example cat text.txt | wc -l, we understand that the standard output of the cat command will be the standard input of the wc command. So cat does not write to the standard output (which would be the terminal) but to the pipe. And it is this redirection behavior that we must simulate in our PIPEX.
 
 
-      > Example of the smallest map that does not have '0':
-      >
-      > 11111
-      >
-      > 1pce1
-      >
-      > 11111
+### Let's go
+1 - How do we execute a shell command in C?
+First we need to understand that each command executed in the shell is actually a program. To run these programs we will use the command from the exec library (we have some exec options such as "l", "lp", "le", etc) what we will use in PIPEX is execve, which overwrites the process that invoked by another that is specified in its parameters.
 
-    + (d.5) exception if it has any characters other than the 4 mentioned above
+  >$> int execve(cons char *pathname, char *const argv[], char *const envp[])
 
-- We create a handle_errors, where we will handle all error messages for functions:
-  - check_shape -> error_shape
-  - check_rectangle -> error_rectangle
-  - check_walls -> error_walls
-  - check_items -> error_items
-- We create a handle_game, where we will:
-  - create the game window (create_window)
-  - close the game window (close_window)
-    + (a) closing the window by some exception or clicking close or ESC
-    + (b) closing the window at the end of the game (game_over)
-  - Render
-    + (a) assigning images to the corresponding variables
-    + (b) replacing characters with images
-  - Hooks
-    + (a) window: interface (btn close and minimize)
-    + (b) window: expose (to be covered by another window)
-    + (c) keyboard: keyboard capture
-      + (c.1) walk up, down, left or right (WSAD)
-        * destroy the current player image
-        
-        * replacing with the corresponding image
-        
-        * move the 'P' on the textmap:
-          > - Check if the chosen direction is a wall '1', if yes, do nothing;
-          >
-          > - Check if the chosen direction is a collectible item 'C', if yes, (a) swap the 'P' of position with the 'C', (b) decrement the total of 'C' on the map, (c) on the instead of 'P' put a '0' and (d) account for the movement
-          >
-          >- Check if the chosen direction is exit 'E', if yes, (a) check if the amount of collectibles is equal to zero, if yes, (b) account for the movement and (c) close the game close_window.game_over (); otherwise, do nothing, in this case the output is seen as a wall.
-          >
-          >- Check if the direction chosen is the ground '0', if so, (a) change the 'P' in the text map to '0' and (b) account for the movement
+  - pathname: is the path of the binary file that we are going to execute
+  - argv[]: are the arguments we want to pass to the program, remembering that arg[0] is the binary 
+  - envp[]: is a pointer to environment variables. For example, depending on the OS, some files/commands can be stored in the "usr" directory, but on other OS's not, so we use this variable to get the result of something like "env | grep PATH" and filter it ( with the functions ft_strnstr, ft_substre ft_split from our libft !) so that we can find the commands that we will use
+  - the execve function returns a value of -1 if there is a problem, if not, it does not return because a new process is created and the old one that invoked it is overwritten.
+
+2 - To verify all the functions in the env PATH, we will use the access command, for that we will analyze it:
+
+  >$> int access(const char *pathname, int mode);
+
+  - pathname: is the path that we are going to search the binary file
+  - mode: what do we want to know from this file (if located):
+    - F_OK: was located
+    - X_OK: if it can be executed
+    - R_OK: if it can be read
+    - W_OK: if it can be written
+  - the function return is -1 if there is any problem with the location or permissions and it will return 0 if everything is ok and the file is in the indicated path
+
 
 ## References
-- [MiniLibX](https://github.com/42Paris/minilibx-linux)
 - [Getting started with the minilibx](https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx)
 - [42Docs - MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx.html)

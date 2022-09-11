@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:33:52 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/11 08:11:40 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:29:15 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	main(int argc, char **argv, char **envp)
 	argc_validator(argc);
 	file_1 = open(argv[1], O_RDONLY);
 	file_2 = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	open_file_validator(file_1, file_2, argv[1]);
-	pipering(data, file_1, file_2, argv, envp);
+	open_file_validator(file_1, file_2, argv[1], &data);
+	data.argv = argv;
+	data.envp = envp;
+	pipering(data);
 	return (0);
 }

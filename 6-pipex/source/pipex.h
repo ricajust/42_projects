@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/11 08:18:48 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:41:20 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@
 
 typedef struct s_data
 {
+	int		file_1;
+	int		file_2;
+	char	**argv;
+	char	**envp;
 	char	**command_and_flags;
 }	t_data;
-
 
 /**
  * @brief arguments validator
@@ -37,14 +40,14 @@ typedef struct s_data
 void	argc_validator(int argc);
 
 /**
- * @brief open file validator, check if files descriptors is < 0, what if, show 
+ * @brief open file validator, check if files descriptors is < 0, what if, show
  * error message and close program
  * 
  * @param fd_1 file descriptor input file
  * @param fd_2 file descriptor output file
- * @param name_file file name (argv)
+ * @param name_file char * with file name (input in argv)
  */
-void	open_file_validator(int fd_1, int fd_2, char *name_file);
+void	open_file_validator(int fd_1, int fd_2, char *name_file, t_data *data);
 
 /**
  * @brief pipe create process validator
@@ -57,18 +60,23 @@ void	pipe_validator(int pipe_return);
 /**
  * @brief fork create process validator
  * 
+ * @param process_id int value returns fork creation, if value is -1 then fork 
+ * creation failure
  */
 void	fork_validator(pid_t process_id);
 
 /**
- * @brief 
+ * @brief create pipe, create fork and execute the first command in the child 
+ * process and the second command (with result of the first command) in the 
+ * parent process, where the program output is displayed in the outfile file
  * 
- * @param file_1 
- * @param file_2 
- * @param argv 
- * @param envp 
+ * 
+ * @param file_1 the infile file
+ * @param file_2 the outfile file
+ * @param argv char ** bi-dimensional array with input commands and your flags
+ * @param envp char ** bi-dimensional array with environment variable
  */
-void	pipering(t_data data, int file_1, int file_2, char **argv, char **envp);
+void	pipering(t_data data);
 
 /**
  * @brief 
