@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/11 16:30:20 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:05:56 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	argc_validator(int argc);
  * 
  * @param fd_1 (file) file descriptor input file
  * @param fd_2 (file) file descriptor output file
+ * @param file_name (char * array) with name of file
  */
-void	open_file_validator(int fd_1, int fd_2);
+void	open_file_validator(int fd_1, int fd_2, char *file_name);
 
 /**
  * @brief pipe create process validator
@@ -63,15 +64,6 @@ void	pipe_validator(int pipe_return);
  * fork creation failure
  */
 void	fork_validator(pid_t process_id);
-
-/**
- * @brief Simple error handling show message and free all possible memory 
- * allocation
- * 
- * @param command (char * array) with command
- * @param data (struct) with program data
- */
-void	error_handling(char *command, t_data *data);
 
 /**
  * @brief Make all orchestration and execution from both commands with yours 
@@ -133,5 +125,12 @@ void	parent_process(int*file_descriptor, t_data *data);
  * @param envp 
  */
 void	execute_command(char *command, char **envp);
+
+/**
+ * @brief 
+ * 
+ * @param matrix 
+ */
+void	free_matrix(char **matrix);
 
 #endif

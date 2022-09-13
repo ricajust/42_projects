@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:43:37 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/08/14 17:31:58 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:14:55 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -330,6 +330,12 @@ void		ft_putchar_fd(char c, int fd);
  * @return None
  */
 void		ft_putstr_fd(char const *s, int fd);
+/**
+ * @brief String cleaner
+ * 
+ * @param pont char double pointer
+ */
+void		ft_strdel(char **pont);
 /**
  * 
  */

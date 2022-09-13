@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 15:00:51 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/11 16:41:39 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:16:35 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,15 @@
 void	child_process(int*file_descriptor, t_data *data)
 {
 	char	*command;
-	int		i;
-	
+
 	dup2(data->file_1, STDIN_FILENO);
 	dup2(file_descriptor[1], STDOUT_FILENO);
 	close(file_descriptor[0]);
 	command = find_command(data->argv[2], data);
-
 	execve(command, data->command_and_flags, data->envp);
 	perror("pipex");
-	i = 0;
+	free_matrix(data->command_and_flags);
 	free(command);
-	while (data->command_and_flags[i])
-	{
-		ft_printf("%d - %s\n", i, data->command_and_flags[i]);
-		free(data->command_and_flags[i]);
-		i++;
-	}
 	exit(EXIT_FAILURE);
 }
 
@@ -44,7 +36,8 @@ void	parent_process(int*file_descriptor, t_data *data)
 	close(file_descriptor[1]);
 	command = find_command(data->argv[3], data);
 	execve(command, data->command_and_flags, data->envp);
-	perror("pipex");
+	free_matrix(data->command_and_flags);
 	free(command);
+	perror("pipex");
 	exit(EXIT_FAILURE);
 }
