@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/12 20:05:56 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:54:31 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,17 +119,9 @@ void	child_process(int*file_descriptor, t_data *data);
 void	parent_process(int*file_descriptor, t_data *data);
 
 /**
- * @brief 
+ * @brief Free all array in matrix one by one
  * 
- * @param command 
- * @param envp 
- */
-void	execute_command(char *command, char **envp);
-
-/**
- * @brief 
- * 
- * @param matrix 
+ * @param matrix (char ** bi-dimensional array)
  */
 void	free_matrix(char **matrix);
 

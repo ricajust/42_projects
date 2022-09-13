@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 15:00:54 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/12 21:16:55 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:38:58 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*ft_strjoin_f(char *s1, char *s2)
 	conc[size_s2 + size_s1] = '\0';
 	return (conc);
 }
-
 
 char	*find_command(char *command_with_flag, t_data *data)
 {

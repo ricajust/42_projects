@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 15:00:51 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/12 21:16:35 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:56:04 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	parent_process(int*file_descriptor, t_data *data)
 {
 	char	*command;
 
-	dup2(data->file_2, STDOUT_FILENO);
 	dup2(file_descriptor[0], STDIN_FILENO);
+	dup2(data->file_2, STDOUT_FILENO);
 	close(file_descriptor[1]);
 	command = find_command(data->argv[3], data);
 	execve(command, data->command_and_flags, data->envp);
