@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipering.c                                         :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 08:58:19 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/19 08:00:53 by rda-silv         ###   ########.fr       */
+/*   Created: 2022/09/17 09:24:50 by rda-silv          #+#    #+#             */
+/*   Updated: 2022/09/19 08:18:24 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pipering(t_data data)
+int	handle_error(t_data *data, char *command)
 {
-	int		file_descriptor[2];
-	pid_t	process_id;
-
-	pipe_validator(pipe(file_descriptor));
-	process_id = fork();
-	fork_validator(process_id);
-	if (process_id == 0)
-		child_process(file_descriptor, &data);
-	else
-	{
-		wait(NULL);
-		parent_process(file_descriptor, &data);
-	}
-	close(data.file_1);
-	close(data.file_2);
+	ft_printf("%s: command not found\n", data->command_and_flags[0]);
+	free_matrix(data->command_and_flags);
+	free(command);
+	return (127);
 }

@@ -6,7 +6,7 @@
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/06 07:57:57 by rda-silv          #+#    #+#              #
-#    Updated: 2022/09/11 15:05:29 by rda-silv         ###   ########.fr        #
+#    Updated: 2022/09/17 09:28:04 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIB_DIR=library
 LIBFT=./$(LIB_DIR)/libft/libft.a
 
 #SOURCE CODES
-SRCS=pipex.c validators.c pipering.c finding.c executing.c
+SRCS=pipex.c validators.c pipering.c finding.c executing.c handle_error.c
 
 #GET ALL SOURCES FILES
 SRC=$(addprefix $(SRC_DIR)/,$(SRCS))

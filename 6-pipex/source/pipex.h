@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/13 08:54:31 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/17 09:27:43 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,14 @@ void	parent_process(int*file_descriptor, t_data *data);
  * @param matrix (char ** bi-dimensional array)
  */
 void	free_matrix(char **matrix);
+
+/**
+ * @brief A simple function to handle error
+ * 
+ * @param data struct with program data
+ * @param command (char *) array with input argument command
+ * 
+ */
+int		handle_error(t_data *data, char *command);
 
 #endif

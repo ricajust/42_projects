@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:40 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/12 19:50:20 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:25:22 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	argc_validator(int argc)
 
 void	open_file_validator(int fd_1, int fd_2, char *file_name)
 {
-	if (fd_1 < 0)
+	if (fd_1 < 0 || fd_2 < 0)
 	{
 		close(fd_1);
 		close(fd_2);
