@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/17 09:27:43 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:18:37 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	argc_validator(int argc);
  * @param fd_2 (file) file descriptor output file
  * @param file_name (char * array) with name of file
  */
-void	open_file_validator(int fd_1, int fd_2, char *file_name);
+void	open_file_validator(int fd_1, int fd_2, char *filein, char *fileout);
 
 /**
  * @brief pipe create process validator
@@ -134,4 +134,12 @@ void	free_matrix(char **matrix);
  */
 int		handle_error(t_data *data, char *command);
 
+/**
+ * @brief 
+ * 
+ * @param s1 
+ * @param s2 
+ * @return char* 
+ */
+char	*ft_strjoin_f(char *s1, char *s2);
 #endif

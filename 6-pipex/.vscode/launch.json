@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/home/rda-silv/projects/42_projects/6-pipex/pipex",
-			"args": ["infile", "ls -la", "wc -l", "outfile"],
+			"args": ["/home/rda-silv/projects/42_projects/6-pipex/infile", "ls", "wc", "/home/rda-silv/projects/42_projects/6-pipex/outfile"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],
@@ -17,16 +17,20 @@
 			"MIMode": "gdb",
 			"setupCommands": [
 				{
-					"description": "Enable pretty-printing for gdb",
+					"description": "Enable funcy printing to gdb",
 					"text": "-enable-pretty-printing",
 					"ignoreFailures": true
 				},
+				{   "description":"In this mode GDB will be attached to both processes after a call to fork() or vfork().",
+					"text": "-gdb-set detach-on-fork on",
+					"ignoreFailures": true
+				},
 				{
-					"description":  "Set Disassembly Flavor to Intel",
-					"text": "-gdb-set disassembly-flavor intel",
+					"description": "The new process is debugged after a fork. The parent process runs unimpeded.",
+					"text": "-gdb-set follow-fork-mode child",
 					"ignoreFailures": true
 				}
-			]
+			],
 		}
 
 	]

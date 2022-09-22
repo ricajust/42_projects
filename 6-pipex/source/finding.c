@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 15:00:54 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/19 08:05:12 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:00:23 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char	*find_command(char *command_with_flag, t_data *data)
 		path_and_command = ft_strjoin_f(paths[i], data->command_and_flags[0]);
 		if (access(path_and_command, F_OK | X_OK) == 0)
 		{
-			ft_printf("\nPATH AND COMMAND: %sn\n\n", path_and_command);
 			free(env_path);
 			free_matrix(paths);
 			return (path_and_command);
