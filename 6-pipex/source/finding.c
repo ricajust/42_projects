@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 15:00:54 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/24 21:43:58 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/25 07:34:50 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ char	*find_command(char *command_with_flag, t_data *data)
 	char	*env_path;
 	char	**paths;
 	char	*path_and_command;
-	char	*test;
+	// char	*test;
 
 	data->command_and_flags = ft_split(command_with_flag, ' ');
-	test = handle_command(data->command_and_flags[0]);
-	printf("\n----- %s -----\n", test);
+	// test = handle_command(data->command_and_flags[0]);
+	// printf("\n----- %s -----\n", test);
 	env_path = find_path_in_env(data->envp);
 	paths = ft_split(env_path, ':');
 	i = 0;
