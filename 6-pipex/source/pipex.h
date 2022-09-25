@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/24 21:37:26 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/25 07:58:57 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,5 @@ char	*ft_strjoin_f(char *s1, char *s2);
  */
 void	free_all(char *env_path, char **paths);
 
-char	*handle_command(char *cmd);
+char	*handle_command_and_flag(char *cmd);
 #endif

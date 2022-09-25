@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 15:00:51 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/25 07:33:22 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/25 07:39:54 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	child_process(int*file_descriptor, t_data *data)
 	dup2(data->file_in, STDIN_FILENO);
 	dup2(file_descriptor[1], STDOUT_FILENO);
 	close(file_descriptor[0]);
-	command = find_command(data->argv[2], data);
+	command = find_command(data->first_cmd, data);
+	// printf("COMANDO LOCALIZADO: %s\n", command);
 	if (!command)
 	{
 		close_all_file_descriptor(file_descriptor[1], data);
@@ -48,7 +49,7 @@ void	parent_process(int*file_descriptor, t_data *data)
 	dup2(file_descriptor[0], STDIN_FILENO);
 	// dup2(data->file_out, STDOUT_FILENO);
 	close(file_descriptor[1]);
-	command = find_command(data->argv[3], data);
+	command = find_command(data->last_cmd, data);
 	if (!command)
 	{
 		close_all_file_descriptor(file_descriptor[0], data);
