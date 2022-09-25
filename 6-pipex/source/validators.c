@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:40 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/21 19:42:45 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:58:02 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	argc_validator(int argc)
 	}
 }
 
-void	show_error(char *filein, char *str_phrase)
+void	show_error(char *file, char *str_phrase)
 {
 	char	*error;
 
 	error = NULL;
-	error = ft_strjoin_f(filein, str_phrase);
+	error = ft_strjoin_f(file, str_phrase);
 	ft_putstr_fd(error, 2);
 	ft_strdel(&error);
 }

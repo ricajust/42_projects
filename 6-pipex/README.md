@@ -41,6 +41,9 @@ Should behave like: < infile grep a1 | wc -w > outfile
 ## Directory Hierarchy
 ```
 |—— Makefile
+|—— README123.md
+|—— infile
+|—— kafka
 |—— library
 |    |—— libft
 |        |—— Makefile
@@ -76,6 +79,7 @@ Should behave like: < infile grep a1 | wc -w > outfile
 |        |—— ft_putstr_fd.c
 |        |—— ft_split.c
 |        |—— ft_strchr.c
+|        |—— ft_strdel.c
 |        |—— ft_strdup.c
 |        |—— ft_striteri.c
 |        |—— ft_strjoin.c
@@ -91,12 +95,13 @@ Should behave like: < infile grep a1 | wc -w > outfile
 |        |—— ft_tolower.c
 |        |—— ft_toupper.c
 |        |—— ft_uitoa.c
-|        |—— libft.a
 |        |—— libft.h
-|—— infile
-|—— outfile *(dymanically generated)
-|—— pipex (binary)
+|—— outfile
 |—— source
+|    |—— executing.c
+|    |—— finding.c
+|    |—— ft_strjoin_f.c
+|    |—— handle_error.c
 |    |—— pipering.c
 |    |—— pipex.c
 |    |—— pipex.h

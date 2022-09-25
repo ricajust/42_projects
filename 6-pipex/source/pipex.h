@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/21 20:18:37 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/24 21:37:26 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 typedef struct s_data
 {
-	int		file_1;
-	int		file_2;
+	int		file_in;
+	int		file_out;
+	char	*first_cmd;
+	char	*last_cmd;
 	char	**argv;
 	char	**envp;
 	char	**command_and_flags;
@@ -142,4 +144,12 @@ int		handle_error(t_data *data, char *command);
  * @return char* 
  */
 char	*ft_strjoin_f(char *s1, char *s2);
+
+/**
+ * @brief 
+ * 
+ */
+void	free_all(char *env_path, char **paths);
+
+char	*handle_command(char *cmd);
 #endif
