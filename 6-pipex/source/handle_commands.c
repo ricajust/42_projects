@@ -6,64 +6,72 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 15:06:47 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/25 10:18:13 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:23:31 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*handle_command(char *raw_command, char *final_command)
+int	replace_space(char *command, int *indice)
 {
-	char	*command;
-	char	**command_without_single_quote;
-
-	command = raw_command;
-	if (command[0] == 39 && command[ft_strlen(command) - 1] == 39)
+	(*indice)++;
+	while (command[*indice] && command[*indice] != 39)
 	{
-		command_without_single_quote = ft_split(command, 39);
-		command = ft_strdup(command_without_single_quote[0]);
-		free_matrix(command_without_single_quote);
+		if (command[*indice] == 32)
+			command[*indice] = '\a';
+		(*indice)++;
 	}
-	final_command = ft_strjoin(command, " ");
-	command = NULL;
-	return (final_command);
+	if (command[*indice] == '\0')
+		return (1);
+	return (0);
 }
 
-char	*handle_flag(char *raw_flag, char *final_command)
+void	return_space(char *command)
 {
-	char	*flag;
-	char	**flag_without_single_quote;
+	int	i;
 
-	flag = raw_flag;
-	if (flag && flag[0] == 39 && flag[ft_strlen(flag) - 1] == 39)
-	{
-		flag_without_single_quote = ft_split(flag, 39);
-		flag = ft_strdup(flag_without_single_quote[0]);
-		free_matrix(flag_without_single_quote);
-	}
-	final_command = ft_strjoin(final_command, flag);
-	flag = NULL;
-	return (final_command);
-}
-
-char	*handle_command_and_flag(char *cmd)
-{
-	char	**command_and_flag;
-	char	*final_command;
-	int		i;
-
-	if (cmd[0] == 39 && cmd[ft_strlen(cmd) - 1] == 39)
-		return (cmd);
-	command_and_flag = ft_split(cmd, ' ');
 	i = 0;
-	while (command_and_flag[i])
+	while (command[i])
 	{
-		if (i == 0)
-			final_command = handle_command(command_and_flag[i], final_command);
-		else
-			final_command = handle_flag(command_and_flag[i], final_command);
+		if (command[i] == '.')
+			command[i] = 32;
+		(i)++;
+	}
+
+}
+
+char	**handle_command_and_flag(char *command)
+{
+	int		flag;
+	int		i;
+	char	**cmds;
+	char	*temp;
+
+	flag = 0;
+	i = 0;
+	while (command[i])
+	{
+		if (command[i] == 39 && flag == 0)
+			flag = replace_space(command, &i);
 		i++;
 	}
-	free(command_and_flag);
-	return (final_command);
+	cmds = ft_split(command, 32);
+	if (flag == 1)
+		return (cmds);
+	i = 0;
+	while (cmds[i])
+	{
+		temp = ft_strtrim(cmds[i], "'");
+		free(cmds[i]);
+		cmds[i] = ft_strdup(temp);
+		free(temp);
+		i++;
+	}
+	i = 0;
+	while (cmds[i])
+	{
+		return_space(cmds[i]);
+		i++;
+	}
+	return (cmds);
 }

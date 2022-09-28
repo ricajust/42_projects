@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/home/rda-silv/projects/42_projects/6-pipex/pipex",
-			"args": ["/home/rda-silv/projects/42_projects/6-pipex/infile", "lx -coco", "wc -l", "/home/rda-silv/projects/42_projects/6-pipex/outfile"],
+			"args": ["/home/rda-silv/projects/42_projects/6-pipex/infile", "'ls -la'", "wc", "/home/rda-silv/projects/42_projects/6-pipex/outfile"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],
