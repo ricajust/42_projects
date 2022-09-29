@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 15:06:47 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/28 08:23:31 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/29 08:24:43 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,37 @@ int	replace_space(char *command, int *indice)
 	return (0);
 }
 
-void	return_space(char *command)
+void	return_space(char **command)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (command[i])
+	{
+		j = 0;
+		while (command[i][j])
+		{
+			if (command[i][j] == '\a')
+				command[i][j] = 32;
+			(j)++;
+		}
+		i++;
+	}
+}
+
+char	**replace_and_split(char *command, int flag)
 {
 	int	i;
 
 	i = 0;
 	while (command[i])
 	{
-		if (command[i] == '.')
-			command[i] = 32;
-		(i)++;
+		if (command[i] == 39 && flag == 0)
+			flag = replace_space(command, &i);
+		i++;
 	}
-
+	return (ft_split(command, 32));
 }
 
 char	**handle_command_and_flag(char *command)
@@ -48,14 +67,7 @@ char	**handle_command_and_flag(char *command)
 	char	*temp;
 
 	flag = 0;
-	i = 0;
-	while (command[i])
-	{
-		if (command[i] == 39 && flag == 0)
-			flag = replace_space(command, &i);
-		i++;
-	}
-	cmds = ft_split(command, 32);
+	cmds = replace_and_split(command, flag);
 	if (flag == 1)
 		return (cmds);
 	i = 0;
@@ -67,11 +79,6 @@ char	**handle_command_and_flag(char *command)
 		free(temp);
 		i++;
 	}
-	i = 0;
-	while (cmds[i])
-	{
-		return_space(cmds[i]);
-		i++;
-	}
+	return_space(cmds);
 	return (cmds);
 }
