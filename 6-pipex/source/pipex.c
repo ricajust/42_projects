@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:33:52 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/11 16:53:06 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/29 08:10:43 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		file_1;
-	int		file_2;
+	int		file_in;
+	int		file_out;
 	t_data	data;
 
 	argc_validator(argc);
-	file_1 = open(argv[1], O_RDONLY);
-	file_2 = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	open_file_validator(file_1, file_2, argv[1]);
+	file_in = open(argv[1], O_RDONLY);
+	file_out = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	open_file_validator(file_in, file_out, argv[1], argv[argc - 1]);
 	data.argv = argv;
 	data.envp = envp;
-	data.file_1 = file_1;
-	data.file_2 = file_2;
+	data.file_in = file_in;
+	data.file_out = file_out;
 	pipering(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 07:57:36 by rda-silv          #+#    #+#             */
-/*   Updated: 2022/09/12 20:05:56 by rda-silv         ###   ########.fr       */
+/*   Updated: 2022/09/28 07:18:44 by rda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 typedef struct s_data
 {
-	int		file_1;
-	int		file_2;
+	int		file_in;
+	int		file_out;
+	char	*first_cmd;
+	char	*last_cmd;
 	char	**argv;
 	char	**envp;
 	char	**command_and_flags;
@@ -47,7 +49,7 @@ void	argc_validator(int argc);
  * @param fd_2 (file) file descriptor output file
  * @param file_name (char * array) with name of file
  */
-void	open_file_validator(int fd_1, int fd_2, char *file_name);
+void	open_file_validator(int fd_1, int fd_2, char *filein, char *fileout);
 
 /**
  * @brief pipe create process validator
@@ -119,18 +121,35 @@ void	child_process(int*file_descriptor, t_data *data);
 void	parent_process(int*file_descriptor, t_data *data);
 
 /**
- * @brief 
+ * @brief Free all array in matrix one by one
  * 
- * @param command 
- * @param envp 
+ * @param matrix (char ** bi-dimensional array)
  */
-void	execute_command(char *command, char **envp);
+void	free_matrix(char **matrix);
+
+/**
+ * @brief A simple function to handle error
+ * 
+ * @param data struct with program data
+ * @param command (char *) array with input argument command
+ * 
+ */
+int		handle_error(t_data *data, char *command);
 
 /**
  * @brief 
  * 
- * @param matrix 
+ * @param s1 
+ * @param s2 
+ * @return char* 
  */
-void	free_matrix(char **matrix);
+char	*ft_strjoin_f(char *s1, char *s2);
 
+/**
+ * @brief 
+ * 
+ */
+void	free_all(char *env_path, char **paths);
+
+char	**handle_command_and_flag(char *cmd);
 #endif

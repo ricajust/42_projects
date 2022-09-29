@@ -6,7 +6,7 @@
 #    By: rda-silv <rda-silv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/06 07:57:57 by rda-silv          #+#    #+#              #
-#    Updated: 2022/09/11 15:05:29 by rda-silv         ###   ########.fr        #
+#    Updated: 2022/09/24 16:20:44 by rda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ CC_FLAGS= -g -Wall -Wextra -Werror
 
 #VALGRIND
 VALGRIND=valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-         -q --tool=memcheck
+       -q --tool=memcheck --track-fds=yes --trace-children=yes ./pipex infile \
+       "ls -la" "wc -l" outfile
 
 #DIRECTORIES
 SRC_DIR=source
@@ -33,7 +34,8 @@ LIB_DIR=library
 LIBFT=./$(LIB_DIR)/libft/libft.a
 
 #SOURCE CODES
-SRCS=pipex.c validators.c pipering.c finding.c executing.c
+SRCS=pipex.c validators.c pipering.c finding.c executing.c handle_error.c \
+     ft_strjoin_f.c handle_commands.c
 
 #GET ALL SOURCES FILES
 SRC=$(addprefix $(SRC_DIR)/,$(SRCS))
@@ -74,7 +76,7 @@ re: fclean all
 
 #VALGRIND
 vg: re
-	$(VALGRIND) ./$(NAME)
+	$(VALGRIND)
 
 #SHORTCUT TO CLEAN ALL
 .PHONY: all clean
